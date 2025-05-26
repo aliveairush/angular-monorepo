@@ -1,0 +1,9 @@
+{
+  "name": "taiga-ui-kit-usage-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/taiga-ui-kit-usage-e2e/src",
+  "implicitDependencies": ["taiga-ui-kit-usage"],
+  "// targets": "to see all targets run: nx show project taiga-ui-kit-usage-e2e --web",
+  "targets": {}
+}
