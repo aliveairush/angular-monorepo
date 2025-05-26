@@ -1,1 +1,11 @@
-<router-outlet></router-outlet>
+<tui-root>
+  <tui-textfield>
+    <label tuiLabel>Enter a number</label>
+
+    <input
+      tuiInputNumber
+      [formControl]="control"
+    />
+  </tui-textfield>
+  <router-outlet></router-outlet>
+</tui-root>
