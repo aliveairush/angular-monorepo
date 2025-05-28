@@ -1,11 +1,9 @@
+<h1>Welcome taiga-ui-kit-usage</h1>
 <tui-root>
   <tui-textfield>
-    <label tuiLabel>Enter a number</label>
+    <label for="some-number" tuiLabel>Enter a number</label>
 
-    <input
-      tuiInputNumber
-      [formControl]="control"
-    />
+    <input id="some-number" tuiInputNumber [formControl]="control" />
   </tui-textfield>
   <router-outlet></router-outlet>
 </tui-root>
