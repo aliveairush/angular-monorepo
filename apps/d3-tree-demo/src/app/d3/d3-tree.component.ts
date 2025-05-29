@@ -51,10 +51,24 @@ export class D3TreeComponent  implements AfterViewInit {
   private treemap = d3.tree().size([this.width, this.height]);
 
   ngAfterViewInit(): void {
-    this.svg = d3.select(this.svgElement.nativeElement)
+    const svgRoot = d3.select(this.svgElement.nativeElement);
+
+    const zoomGroup = svgRoot
       .append('g')
+      .attr('class', 'zoom-content')
       .attr('transform', `translate(0,${this.margin.top})`);
 
+    svgRoot.call(
+      d3.zoom<SVGSVGElement, unknown>()
+        .scaleExtent([0.1, 2])
+        .on('zoom', (event: any) => {
+          zoomGroup.attr('transform', event.transform);
+        })
+    );
+
+    this.svg = zoomGroup;
+
+    // ierarchy and start
     this.root = d3.hierarchy(treeData, (d: TreeNode) => d.children);
     this.root.x0 = this.width / 2;
     this.root.y0 = 0;
