@@ -77,16 +77,6 @@
       "options": {
         "reportsDirectory": "../../coverage/apps/angular-monorepo"
       }
-    },
-    "serve-static": {
-      "continuous": true,
-      "executor": "@nx/web:file-server",
-      "options": {
-        "buildTarget": "angular-monorepo:build",
-        "port": 4200,
-        "staticFilePath": "dist/apps/angular-monorepo/browser",
-        "spa": true
-      }
     }
   }
 }
