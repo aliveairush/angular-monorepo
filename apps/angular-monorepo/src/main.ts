@@ -5,4 +5,4 @@ setTimeout(() => {
   bootstrapApplication(AppComponent, appConfig).catch((err) =>
     console.error(err),
   );
-}, 5000) // Just emilation slow download for animation to run
+}, 200) // Just emilation slow download for animation to run
