@@ -1,0 +1,15 @@
+<h3>Angular SVG as Template chart</h3>
+<div>
+  <app-svg-chart-bar [chartItems]="chartItems" />
+</div>
+
+
+<div>
+  <h3>Angular SVG as Template tree</h3>
+  @if ($$selectedLeaf()) {
+    <div style="margin-bottom: 1rem;  ">Selected leaf: <span style="color: #526ED3">{{$$selectedLeaf()?.label}}</span> </div>
+  }
+  <lib-angular-svg-tree  [levelSpacingY]='150' [treeData]="smallTree"
+    (leafClick)="$$selectedLeaf.set($event)"
+  />
+</div>

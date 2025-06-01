@@ -1,0 +1,45 @@
+<svg
+  #svgContainer
+  [attr.width]="canvasWidth()"
+  [attr.height]="canvasHeight()"
+  [attr.viewBox]="$viewBox()"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g>
+    <!-- Visible Lines between nodes -->
+    @for (link of $visibleLinks(); track link.from.id + '-' + link.to.id) {
+      <line
+        [attr.x1]="link.from.x "
+        [attr.y1]="link.from.y + 40"
+        [attr.x2]="link.to.x "
+        [attr.y2]="link.to.y"
+         stroke="#79818C"
+      />
+    }
+    <!-- NODES -->
+    @for (node of $visibleNodes(); track node.id  + 'SEC' + node.y) {
+      <g class="_leaf" (click)="handleLeafClick(node)">
+        <rect
+          [attr.x]="node.x - node.width / 2"
+          [attr.y]="node.y"
+          rx="6"
+          ry="6"
+          [attr.width]="node.width"
+          height="40"
+          stroke="#DBDBDB"
+          fill="#F5F5F5"
+        />
+        <text
+          [attr.x]="node.x"
+          [attr.y]="node.y + 25"
+          text-anchor="middle"
+          font-size="14"
+          font-weight="600"
+          fill="#1B1F3B"
+        >
+          {{ node.label }}
+        </text>
+      </g>
+    }
+  </g>
+</svg>

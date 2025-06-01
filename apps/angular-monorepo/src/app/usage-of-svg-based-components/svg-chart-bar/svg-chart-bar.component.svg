@@ -1,0 +1,8 @@
+<svg width="420" [attr.height]="barHeight * chartItems().length + (barGap * chartItems().length)">
+  @for (bar of chartItems(); track bar.name; let index = $index) {
+    <g class="_bar-item" (click)="$$activeIndex.set(index)" [class._active]="$$activeIndex() === index">
+      <rect [attr.width]="bar.count * 10" [attr.y]="index * (barHeight + barGap)" [attr.height]="barHeight" fill="#DBDBDB" />
+      <text [attr.x]="bar.count * 10 + 5" [attr.y]="index * (barHeight + barGap) + barHeight * 0.75">{{ bar.name }}</text>
+    </g>
+  }
+</svg>
