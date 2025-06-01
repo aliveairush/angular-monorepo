@@ -1,0 +1,45 @@
+
+<svg
+  #svgContainer
+  width="1000"
+  height="1000"
+  [attr.viewBox]="viewBox"
+
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g [attr.transform]="transform">
+    <!-- Линии от родителя к детям -->
+    @for (node of visibleNodes(); track node.id + '-P' + node.y) {
+      @for (child of node.children || []; track child.id + '-CH' + child.y) {        <line
+          [attr.x1]="node.x + 50"
+          [attr.y1]="node.y + 40"
+          [attr.x2]="child.x + 50"
+          [attr.y2]="child.y"
+          stroke="black"
+        />
+      }
+    }
+
+    <!-- Узлы -->
+    @for (node of visibleNodes(); track node.id  + 'SEC' + node.y) {
+      <g>
+        <rect
+          [attr.x]="node.x"
+          [attr.y]="node.y"
+          width="100"
+          height="40"
+          stroke="black"
+          fill="lightblue"
+        />
+        <text
+          [attr.x]="node.x + 10"
+          [attr.y]="node.y + 25"
+          font-size="14"
+          fill="black"
+        >
+          {{ node.label }}
+        </text>
+      </g>
+    }
+  </g>
+</svg>
