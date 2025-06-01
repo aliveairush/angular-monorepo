@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { SvgChartBarComponent } from './svg-chart-bar/svg-chart-bar.component';
- import { AngularSvgTreeComponent } from '@angular-monorepo/angular-svg-tree';
+import {
+  AngularSvgTreeComponent,
+  PositionedNode,
+} from '@angular-monorepo/angular-svg-tree';
 import { largeTree } from './svg-tree/large-tree.const';
 import { tree } from './svg-tree/medium-tree.const';
 import { smallTree } from './svg-tree/small-tree.const';
@@ -19,6 +22,9 @@ export class UsageOfSvgBasedComponentsComponent {
     { count: 20, name: 'html' },
     { count: 1, name: 'Express' },
   ];
+
+  readonly $$selectedLeaf = signal<PositionedNode | null>(null);
+
   protected readonly largeTree = largeTree;
   protected readonly tree = tree;
   protected readonly smallTree = smallTree;

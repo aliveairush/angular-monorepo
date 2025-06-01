@@ -6,5 +6,10 @@
 
 <div>
   <h3>Angular SVG as Template tree</h3>
-  <lib-angular-svg-tree  [levelSpacingY]='150' [treeData]="smallTree"/>
+  @if ($$selectedLeaf()) {
+    <div>Selected leaf: {{$$selectedLeaf()?.label}}</div>
+  }
+  <lib-angular-svg-tree  [levelSpacingY]='150' [treeData]="smallTree"
+    (leafClick)="$$selectedLeaf.set($event)"
+  />
 </div>

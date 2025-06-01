@@ -18,8 +18,7 @@
     }
     <!-- NODES -->
     @for (node of $visibleNodes(); track node.id  + 'SEC' + node.y) {
-
-      <g>
+      <g class="_leaf" (click)="handleLeafClick(node)">
         <rect
           [attr.x]="node.x - node.width / 2"
           [attr.y]="node.y"
@@ -28,7 +27,7 @@
           [attr.width]="node.width"
           height="40"
           stroke="#DBDBDB"
-          fill="#F6F6F6"
+          fill="#F5F5F5"
         />
         <text
           [attr.x]="node.x"

@@ -7,6 +7,7 @@ import {
   input,
   InputSignal,
   NgZone,
+  output,
   Signal,
   signal,
   viewChild,
@@ -22,6 +23,7 @@ export interface TreeNode {
 export interface PositionedNode extends TreeNode {
   x: number;
   y: number;
+  label: string;
   width: number;
   children?: PositionedNode[];
 }
@@ -42,6 +44,8 @@ export class AngularSvgTreeComponent implements AfterViewInit {
   treeData: InputSignal<TreeNode> = input.required();
 
   levelSpacingY = input<number>(100); // по умолчанию 100px
+
+  leafClick = output<PositionedNode>();
 
   viewBoxWidth = 1000;
   viewBoxHeight = 1000;
@@ -236,6 +240,10 @@ export class AngularSvgTreeComponent implements AfterViewInit {
         passive: false,
       });
     });
+  }
+
+  handleLeafClick(node: PositionedNode) {
+    this.leafClick.emit(node);
   }
 
   ngDoCheck() {
