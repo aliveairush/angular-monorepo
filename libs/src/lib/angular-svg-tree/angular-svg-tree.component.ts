@@ -7,7 +7,6 @@ import {
   input,
   InputSignal,
   NgZone,
-  OnInit,
   Signal,
   signal,
   viewChild,
@@ -23,6 +22,7 @@ export interface TreeNode {
 export interface PositionedNode extends TreeNode {
   x: number;
   y: number;
+  width: number;
   children?: PositionedNode[];
 }
 
@@ -43,15 +43,12 @@ export class AngularSvgTreeComponent implements AfterViewInit {
 
   levelSpacingY = input<number>(100); // по умолчанию 100px
 
-
   viewBoxWidth = 1000;
   viewBoxHeight = 1000;
-
 
   readonly $$isPanning = signal(false);
   readonly $$startX = signal(0);
   readonly $$startY = signal(0);
-
 
   readonly $viewBox = computed(() => {
     return `${this.$$viewBoxX()} ${this.$$viewBoxY()} ${this.viewBoxWidth} ${
@@ -151,16 +148,22 @@ export class AngularSvgTreeComponent implements AfterViewInit {
     spacing = 120
   ): PositionedNode {
     console.log('Tree rerender');
+
+    const charWidth = 7.5;
+    const paddingX = 20;
+    const width = node.label.length * charWidth + paddingX;
+
     const positionedNode: PositionedNode = {
       id: node.id,
       label: node.label,
       x: 0,
       y: depth * this.levelSpacingY(),
+      width,
     };
 
     if (!node.children || node.children.length === 0) {
-      positionedNode.x = xTracker.current;
-      xTracker.current += spacing;
+      positionedNode.x = xTracker.current + width / 2;
+      xTracker.current += width + spacing;
     } else {
       const children: PositionedNode[] = [];
       for (const child of node.children) {

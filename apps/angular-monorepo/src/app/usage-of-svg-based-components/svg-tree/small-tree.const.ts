@@ -13,7 +13,7 @@ export const smallTree = {
         },
         {
           id: 130,
-          label: 'Node 130',
+          label: 'Node 130 With long long text size',
         },
       ],
     },
