@@ -9,7 +9,7 @@
   @if ($$selectedLeaf()) {
     <div style="margin-bottom: 1rem;  ">Selected leaf: <span style="color: #526ED3">{{$$selectedLeaf()?.label}}</span> </div>
   }
-  <lib-angular-svg-tree  [levelSpacingY]='150' [treeData]="smallTree"
+  <lib-angular-svg-tree  [levelSpacingY]='150' [treeData]="tree"
     (leafClick)="$$selectedLeaf.set($event)"
   />
 </div>
